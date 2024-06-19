@@ -32,7 +32,7 @@ public class StudentService {
     public ResponseEntity<?> fetchStudentById(String id){
         Optional<Student> student = studentRepository.findById(id);
         if(student.isPresent()){
-            School school = restTemplate.getForObject("http://localhost:8082/school/" + student.get().getSchoolId(), School.class);
+            School school = restTemplate.getForObject("http://school-service/school/" + student.get().getSchoolId(), School.class);
             StudentResponse studentResponse = new StudentResponse(
                     student.get().getId(),
                     student.get().getName(),
